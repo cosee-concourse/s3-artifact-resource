@@ -5,7 +5,7 @@ from io import StringIO
 from concourse_common import common
 
 
-class CommonTest(unittest.TestCase):
+class TestCommon(unittest.TestCase):
     check_payload = ('{"source":{'
                      '"bucket":"bucketName",'
                      '"access_key":"apiKey123",'

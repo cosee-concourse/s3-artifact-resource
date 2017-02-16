@@ -1,11 +1,11 @@
 import unittest
 
-from concourse_common import common_tests
+from concourse_common import test_common
 
 from model import Model
 
 
-class ModelTest(unittest.TestCase):
+class TestModel(unittest.TestCase):
     check_payload = ('{"source":{'
                      '"bucket":"bucketName",'
                      '"access_key_id":"apiKey123",'
@@ -28,7 +28,7 @@ class ModelTest(unittest.TestCase):
                    '"version":{"version":"version-v1-dev"}}')
 
     def setUpGetterTest(self, payload):
-        common_tests.put_stdin(payload)
+        test_common.put_stdin(payload)
         self.model = Model()
 
     def test_get_access_key(self):

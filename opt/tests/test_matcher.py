@@ -2,7 +2,7 @@ import unittest
 import matcher
 
 
-class MatcherTest(unittest.TestCase):
+class TestMatcher(unittest.TestCase):
     def test_match_files_no_match(self):
         output = matcher.match_versions("release-(.*).tar.gz", ["foo", "bar"], "release-1.0.0.tar.gz")
         self.assertEqual(output, [])

@@ -1,12 +1,12 @@
 import unittest
 
 import check
-from concourse_common import common_tests
+from concourse_common import test_common
 
 
-class CheckTests(unittest.TestCase):
+class TestCheck(unittest.TestCase):
     def test_invalid_json(self):
-        common_tests.put_stdin('{"sourcez":{'
+        test_common.put_stdin('{"sourcez":{'
                                '"apiKey":"apiKey123",'
                                '"secretKey":"secretKey321'
                                '"},'

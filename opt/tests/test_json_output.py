@@ -2,7 +2,7 @@ import unittest
 import json_output
 
 
-class JsonOutputTest(unittest.TestCase):
+class TestJsonOutput(unittest.TestCase):
     def test_check_output_empty_version(self):
         output = json_output.check_output(None)
         self.assertEqual(output, "[]")
