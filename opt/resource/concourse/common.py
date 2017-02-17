@@ -22,7 +22,7 @@ def validate_payload(payload, schema):
 def validate_json(input, schema):
     v = Draft4Validator(schema)
 
-    valid =  True
+    valid = True
 
     for error in sorted(v.iter_errors(input), key=str):
         valid = False

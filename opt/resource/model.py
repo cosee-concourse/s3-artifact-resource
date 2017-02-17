@@ -48,7 +48,7 @@ class Model:
     def get_version(self):
         try:
             version = self.payload['version'][VERSION_JSON_NAME]
-        except TypeError:
+        except KeyError:
             version = None
         return version
 

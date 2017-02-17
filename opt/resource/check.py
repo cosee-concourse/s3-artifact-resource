@@ -18,10 +18,11 @@ def execute():
 
     files = s3client.list_files(model.get_bucket())
 
-    if model.get_version() is (None or ""):
+    version = model.get_version()
+    if version is None or version is "":
         versions = []
     else:
-        regexp = model.get_filename() + '(.*)' + '.tar.gz'
+        regexp = '{}(.*).tar.gz'.format(model.get_filename())
         versions = matcher.match_versions(regexp, files, model.get_version())
 
     print(json_output.check_output(versions))

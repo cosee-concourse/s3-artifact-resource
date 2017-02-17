@@ -42,7 +42,7 @@ checkSchema = {
     }
   },
   "required": [
-    "source",
+    "source"
   ]
 }
 

@@ -1,13 +1,13 @@
 import unittest
 
 import out
-from concourse import test_common
+from concourse import testutil
 
 
 class TestInput(unittest.TestCase):
 
     def test_invalid_json(self):
-        test_common.put_stdin('{"sourcez":{'
+        testutil.put_stdin('{"sourcez":{'
                                '"apiKey":"apiKey123",'
                                '"secretKey":"secretKey321'
                                '"},'
