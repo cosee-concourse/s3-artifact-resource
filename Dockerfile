@@ -1,10 +1,9 @@
 FROM alpine:3.5
 
-COPY requirements.txt .
+COPY opt /opt
 
 RUN mkdir -p /aws && \
     apk -Uuv add groff less python3 && \
-    pip3 install -r requirements.txt && \
+    pip3 install -r /opt/requirements.txt && \
     rm /var/cache/apk/*
 
-COPY opt /opt
