@@ -1,17 +1,16 @@
 #! /usr/bin/env python3
-import sys
 import os
+import sys
 
-from model import Model
-from s3client import S3Client
-import json_output
-import archive_util
-from concourse_common import common
+from concourse import common
+from model import Model, Request
+from util import archive_util, json_output
+from util.s3client import S3Client
 
 
 def execute(destination):
     try:
-        model = Model()
+        model = Model(Request.IN)
     except TypeError:
         return -1
 
@@ -20,14 +19,10 @@ def execute(destination):
     if not s3client.does_bucket_exist(model.get_bucket()):
         return -1
 
-    if model.get_version() is (None or ""):
-        common.log("No Version", file=sys.stderr)
-        return -1
-
     filename = destination + model.get_version()
     s3client.download_file(model.get_bucket(), model.get_version(), filename)
 
-    archive_util.uncompress_file(filename,destination)
+    archive_util.uncompress_file(filename, destination)
     os.remove(filename)
 
     print(json_output.inout_output(model.get_version()))

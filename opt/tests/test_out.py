@@ -1,7 +1,7 @@
 import unittest
 
 import out
-from concourse_common import test_common
+from concourse import test_common
 
 
 class TestInput(unittest.TestCase):

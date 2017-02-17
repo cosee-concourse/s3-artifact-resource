@@ -1,5 +1,6 @@
 import unittest
-import json_output
+
+from util import json_output
 
 
 class TestJsonOutput(unittest.TestCase):

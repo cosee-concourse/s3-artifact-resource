@@ -1,16 +1,21 @@
-from concourse_common import common
+from concourse import common
+from enum import Enum
+import schemas
 
 VERSION_JSON_NAME = 'version'
 
 
 class Model:
 
-    def __init__(self):
-        self.payload = common.get_payload()
+    def __init__(self, request):
+        self.payload = common.load_payload()
 
-        if 'source' not in self.payload:
-            common.log('Invalid JSON. Source should be part of request JSON')
-            raise TypeError
+        if request == Request.CHECK:
+            schema = schemas.checkSchema
+        else:
+            schema = schemas.inoutSchema
+
+        common.validate_payload(self.payload, schema)
 
     def get_bucket(self):
         bucket_name = self.payload['source']['bucket']
@@ -46,3 +51,9 @@ class Model:
         except TypeError:
             version = None
         return version
+
+
+class Request(Enum):
+    CHECK = 1
+    IN = 2
+    OUT = 3

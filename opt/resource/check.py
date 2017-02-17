@@ -1,14 +1,13 @@
 #! /usr/bin/env python3
 
-from model import Model
-from s3client import S3Client
-import json_output
-import matcher
+from model import Model, Request
+from util import json_output, matcher
+from util.s3client import S3Client
 
 
 def execute():
     try:
-        model = Model()
+        model = Model(Request.CHECK)
     except TypeError:
         return -1
 

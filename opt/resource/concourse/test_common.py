@@ -2,7 +2,7 @@ import sys
 import unittest
 from io import StringIO
 
-from concourse_common import common
+from concourse import common
 
 
 class TestCommon(unittest.TestCase):
@@ -17,7 +17,7 @@ class TestCommon(unittest.TestCase):
 
     def test_getPayload(self):
         put_stdin(self.check_payload)
-        result = common.get_payload()
+        result = common.load_payload()
         self.assertEqual(result['source']['access_key'], "apiKey123")
         self.assertEqual(result['source']['secret_access_key'], "secretKey321")
         self.assertEqual(result['source']['region_name'], "eu-west-1")

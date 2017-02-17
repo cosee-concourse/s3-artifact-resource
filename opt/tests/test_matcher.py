@@ -1,5 +1,6 @@
 import unittest
-import matcher
+
+from util import matcher
 
 
 class TestMatcher(unittest.TestCase):

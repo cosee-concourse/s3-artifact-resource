@@ -1,18 +1,18 @@
 #! /usr/bin/env python3
-import sys
-import os
 import io
+import os
+import sys
 
-from model import Model
-from s3client import S3Client
-from concourse_common import common
-import json_output
-import archive_util
+import schemas
+from concourse import common
+from model import Model, Request
+from util import archive_util, json_output
+from util.s3client import S3Client
 
 
 def execute(sources_directory):
     try:
-        model = Model()
+        model = Model(Request.OUT)
     except:
         return -1
 
@@ -20,14 +20,6 @@ def execute(sources_directory):
 
     if not s3client.does_bucket_exist(model.get_bucket()):
         common.log("Bucket does not exist")
-        return -1
-
-    if model.get_version_file() is (None or ""):
-        common.log("No Version", file=sys.stderr)
-        return -1
-
-    if model.get_filename() is (None or ""):
-        common.log("No Filename", file=sys.stderr)
         return -1
 
     common.log("Reading version...")
