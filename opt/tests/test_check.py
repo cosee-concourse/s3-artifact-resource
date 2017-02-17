@@ -27,6 +27,7 @@ class TestCheck(unittest.TestCase):
     @patch('check.matcher')
     @patch('check.S3Client')
     def test_valid_json(self, mock_s3client, mock_matcher):
+        mock_returned_s3client = mock_s3client()
         mock_s3client.does_bucket_exist.return_value = True
         mock_matcher.match_versions.return_value = ['release-1.0.0.tar.gz', 'release-1.0.1.tar.gz']
 
@@ -35,10 +36,10 @@ class TestCheck(unittest.TestCase):
 
         self.assertEqual(0, check.execute())
 
-        mock_s3client.assert_called_once_with("apiKey123", "secretKey321", "eu-west-1")
+        mock_s3client.assert_called_with("apiKey123", "secretKey321", "eu-west-1")
 
-        mock_s3client.does_bucket_exist.assert_called_with('bucketName')
-        mock_s3client.list_files.assert_called_once()
+        mock_returned_s3client.does_bucket_exist.assert_called_with('bucketName')
+        mock_returned_s3client.list_files.assert_called_with('bucketName')
 
         mock_matcher.match_versions.assert_called_once_with("release-(.*).tar.gz", unittest.mock.ANY,
                                                             "release-1.0.0.tar.gz")
