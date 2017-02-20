@@ -12,8 +12,10 @@ class Model:
 
         if request == Request.CHECK:
             schema = schemas.checkSchema
+        elif request == Request.IN:
+            schema = schemas.inSchema
         else:
-            schema = schemas.inoutSchema
+            schema = schemas.outSchema
 
         common.validate_payload(self.payload, schema)
 
