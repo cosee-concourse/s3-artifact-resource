@@ -6,7 +6,6 @@ from concourse import common
 from model import Model, Request
 from util import archive_util, json_output
 from util.s3client import S3Client
-from colorama import init
 
 
 def execute(destination):
@@ -31,7 +30,6 @@ def execute(destination):
     return 0
 
 if __name__ == '__main__':
-    init(autoreset=True)
     if len(sys.argv) != 2:
         common.log_error("Wrong number of arguments!")
         exit(-1)
