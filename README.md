@@ -32,7 +32,7 @@ The compressed files are found with the `filename`. The versions in the file nam
 will be used to order them (using [semver](http://semver.org/)). Each
 object's filename is the resulting version.
 
-### `in`: Fetch an object from the bucket.
+### `in`: Fetches artifacts from the bucket.
 
 * Uncompresses and places files to destination. Uses gzip as compression.
 
@@ -40,7 +40,7 @@ object's filename is the resulting version.
 
 *None.*
 
-### `out`: Upload an object to the bucket.
+### `out`: Upload artifacts as archive to the bucket.
 
 Given a folder specified by `folderpath`, compresses folder contents and uploads compressed fly it to the S3 bucket.
 Reads semver version from specified file `version` to generate the versioned name.
