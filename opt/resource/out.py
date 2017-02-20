@@ -1,11 +1,10 @@
 #! /usr/bin/env python3
-import io
 import os
 import sys
 
 from concourse import common
 from model import Model, Request
-from util import archive_util, json_output
+from util import archive_util, json_output, io_util
 from util.s3client import S3Client
 
 
@@ -21,21 +20,21 @@ def execute(sources_directory):
         common.log("Bucket does not exist")
         return -1
 
-    version = io.open(os.path.join(sources_directory,model.get_version_file()), "r").read()
+    version_file_path = os.path.join(sources_directory, model.get_version_file())
+    artifacts_folder_path = os.path.join(sources_directory, model.get_folderpath())
 
-    filename = model.get_filename() + version + '.tar.gz'
+    version = io_util.read_file(version_file_path)
+    archive_filename = model.get_filename() + version + '.tar.gz'
 
-    folderpath = os.path.join(sources_directory, model.get_folderpath())
+    archive_util.compress_folder(archive_filename, artifacts_folder_path)
 
-    archive_util.compress_folder(filename, folderpath)
+    archive_file_path = os.path.join(artifacts_folder_path, archive_filename)
 
-    filepath = os.path.join(folderpath,filename)
+    s3client.upload_file(model.get_bucket(), archive_filename, archive_file_path)
 
-    s3client.upload_file(model.get_bucket(), filename, filepath)
+    os.remove(archive_file_path)
 
-    os.remove(filepath)
-
-    print(json_output.inout_output(filename))
+    print(json_output.inout_output(archive_filename))
 
     return 0
 

@@ -19,11 +19,11 @@ def execute(destination):
     if not s3client.does_bucket_exist(model.get_bucket()):
         return -1
 
-    filename = destination + model.get_version()
-    s3client.download_file(model.get_bucket(), model.get_version(), filename)
+    archive_filename = os.path.join(destination,model.get_version())
+    s3client.download_file(model.get_bucket(), model.get_version(), archive_filename)
 
-    archive_util.uncompress_file(filename, destination)
-    os.remove(filename)
+    archive_util.uncompress_file(archive_filename, destination)
+    os.remove(archive_filename)
 
     print(json_output.inout_output(model.get_version()))
 

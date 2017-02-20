@@ -13,7 +13,7 @@ class S3Client:
             region_name=region_name
         )
 
-    def does_bucket_exist(self,bucket_name):
+    def does_bucket_exist(self, bucket_name):
         try:
             if not self.does_bucket_exist_internal(bucket_name):
                 common.log("Bucket does not exist")
@@ -33,14 +33,14 @@ class S3Client:
     def list_files(self, bucket_name):
         files = []
         objects = self.client.list_objects_v2(
-            Bucket = bucket_name
+            Bucket=bucket_name
         )
         for content in objects['Contents']:
             files.append(content['Key'])
         return files
 
-    def download_file(self, bucket, key, filepath):
-        self.client.download_file(bucket,key,filepath)
+    def download_file(self, bucket, key, file_path):
+        self.client.download_file(bucket, key, file_path)
 
-    def upload_file(self, bucket, key, filepath):
-        self.client.upload_file(filepath, bucket, key)
+    def upload_file(self, bucket, key, file_path):
+        self.client.upload_file(file_path, bucket, key)

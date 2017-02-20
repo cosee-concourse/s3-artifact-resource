@@ -16,7 +16,7 @@ def mock_stdout():
 
 def read_from_io(io):
     io.seek(0)
-    return io.read()
+    return io.read().strip('\n')
 
 
 def put_stdin(content):

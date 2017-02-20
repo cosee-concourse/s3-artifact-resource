@@ -67,7 +67,7 @@ class TestCommon(unittest.TestCase):
     def test_log_on_stderr(self):
         io = testutil.mock_stderr()
         common.log("Some Test Log")
-        self.assertEqual("Some Test Log\n", testutil.read_from_io(io))
+        self.assertEqual("Some Test Log", testutil.read_from_io(io))
 
 
 if __name__ == '__main__':

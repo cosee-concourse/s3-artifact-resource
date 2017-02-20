@@ -90,7 +90,8 @@ inSchema = {
     }
   },
   "required": [
-    "source"
+    "source",
+    "version"
   ]
 }
 
