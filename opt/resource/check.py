@@ -3,6 +3,7 @@
 from model import Model, Request
 from util import json_output, matcher
 from util.s3client import S3Client
+from colorama import init
 
 
 def execute():
@@ -30,4 +31,5 @@ def execute():
     return 0
 
 if __name__ == '__main__':
+    init(autoreset=True)
     exit(execute())

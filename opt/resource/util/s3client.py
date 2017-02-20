@@ -16,10 +16,10 @@ class S3Client:
     def does_bucket_exist(self, bucket_name):
         try:
             if not self.does_bucket_exist_internal(bucket_name):
-                common.log("Bucket does not exist")
+                common.log_error("Bucket does not exist")
                 return False
         except botocore.exceptions.ClientError:
-            common.log("Invalid Credentials!")
+            common.log_error("Invalid Credentials!")
             return False
         return True
 
