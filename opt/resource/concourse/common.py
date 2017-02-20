@@ -1,9 +1,9 @@
 import json
 import sys
 import tempfile
+from enum import Enum
 
 from jsonschema import Draft4Validator
-from colorama import Fore
 
 
 def load_payload():
@@ -47,3 +47,15 @@ def log_warning(message):
 
 def log_info(message):
     log(Fore.BLUE + str(message))
+
+
+class Fore(Enum):
+    BLACK = 30
+    RED = 31
+    GREEN = 32
+    YELLOW = 33
+    BLUE = 34
+    MAGENTA = 35
+    CYAN = 36
+    WHITE = 37
+    RESET = 39
