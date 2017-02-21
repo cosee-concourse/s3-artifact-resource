@@ -12,7 +12,6 @@ def load_payload():
     log_info("Logging payload to {}".format(fname))
     with open(fname, 'w') as fp:
         fp.write(json.dumps(payload))
-    log_info(payload)
     return payload
 
 
