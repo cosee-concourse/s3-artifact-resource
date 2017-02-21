@@ -17,7 +17,7 @@ Compresses artifacts and archives them compressed in an S3 bucket
 * `region_name`: *Required.* The region the bucket is in.
 
 * `filename`: *Required* Prefix of the filename to be used for the compressed file in the S3 bucket. 
-  At the moment folders are supported not supported.
+  At the moment folders are not supported.
   It should be without version and data extension because they are added at `out`. To version the files, the `semver` resource
   is required. The final filename (key) in the S3 bucket is: 
  `filename` `version`.tar.gz
@@ -47,7 +47,7 @@ Reads semantic version created by the `semver` resource specified as filepath `v
 
 #### Parameters
  
-* `version`: *Required* Filepath to `semver` version file
+* `version`: *Required* File path to `semver` version file
  
 * `folderpath`: *Required* Path to folder that contains artifacts
 
@@ -81,7 +81,7 @@ Reads semantic version created by the `semver` resource specified as filepath `v
 ```
 
 ``` yaml
-- put: release
+- put: artifacts
   params:
     version: version/number
     folderpath: artifacts/
