@@ -3,7 +3,7 @@ from unittest.mock import patch
 
 import check
 import payloads
-from concourse import testutil
+from concourse_common import testutil
 
 
 class TestCheck(unittest.TestCase):

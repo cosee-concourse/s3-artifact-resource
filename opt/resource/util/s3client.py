@@ -1,7 +1,7 @@
 import boto3
 import botocore
 
-from concourse import common
+from concourse_common import common
 
 
 class S3Client:

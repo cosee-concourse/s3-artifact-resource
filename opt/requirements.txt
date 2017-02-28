@@ -3,3 +3,4 @@ boto3==1.4.4
 semver==2.7.5
 colorama==0.3.7
 pytest==3.0.6
+git+https://github.com/cosee-concourse/concourse-common.git

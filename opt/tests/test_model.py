@@ -1,6 +1,6 @@
 import unittest
 
-from concourse import testutil
+from concourse_common import testutil
 
 from model import Model, Request
 import payloads

@@ -3,7 +3,7 @@ from unittest.mock import patch
 
 import input
 import payloads
-from concourse import testutil
+from concourse_common import testutil
 
 
 class TestInput(unittest.TestCase):

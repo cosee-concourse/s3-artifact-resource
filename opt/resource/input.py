@@ -2,7 +2,7 @@
 import os
 import sys
 
-from concourse import common
+from concourse_common import common
 from model import Model, Request
 from util import archive_util, json_output
 from util.s3client import S3Client

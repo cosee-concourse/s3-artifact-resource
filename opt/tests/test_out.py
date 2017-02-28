@@ -3,7 +3,7 @@ from unittest.mock import patch
 
 import out
 import payloads
-from concourse import testutil
+from concourse_common import testutil
 
 
 class TestOut(unittest.TestCase):
