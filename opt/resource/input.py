@@ -10,7 +10,7 @@ from s3client import S3Client
 
 
 def execute(destination):
-    valid, payload = load_and_validate_payload(schemas, Request.CHECK)
+    valid, payload = load_and_validate_payload(schemas, Request.IN)
     if not valid:
         return -1
 

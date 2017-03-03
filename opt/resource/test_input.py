@@ -20,7 +20,7 @@ class TestInput(unittest.TestCase):
         testutil.put_stdin(payloads.in_payload_without_version)
         io = testutil.mock_stderr()
         self.assertEqual(-1, input.execute(""))
-    #   self.assertRegex(testutil.read_from_io(io), "JSON Validation ERROR: 'version' is a required property")
+        self.assertRegex(testutil.read_from_io(io), "JSON Validation ERROR: 'version' is a required property")
 
     @patch('input.S3Client')
     def test_valid_json_invalid_credentials_or_bucket_does_not_exist(self, mock_s3client):

@@ -12,7 +12,7 @@ import schemas
 
 
 def execute(sources_directory):
-    valid, payload = load_and_validate_payload(schemas, Request.CHECK)
+    valid, payload = load_and_validate_payload(schemas, Request.OUT)
     if not valid:
         return -1
 
