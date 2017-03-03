@@ -1,4 +1,4 @@
-checkSchema = {
+check_schema = {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
@@ -46,7 +46,7 @@ checkSchema = {
   ]
 }
 
-inSchema = {
+in_schema = {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
@@ -95,7 +95,7 @@ inSchema = {
   ]
 }
 
-outSchema = {
+out_schema = {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {

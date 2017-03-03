@@ -1,31 +1,37 @@
 #! /usr/bin/env python3
 
-from model import Model, Request
-from util import json_output, matcher
-from util.s3client import S3Client
+from concourse_common.jsonutil import *
+from concourse_common.matcher import *
+
+import schemas
+from model import *
+from s3client import S3Client
 
 
 def execute():
-    try:
-        model = Model(Request.CHECK)
-    except TypeError:
+    valid, payload = load_and_validate_payload(schemas, Request.CHECK)
+
+    if not valid:
         return -1
 
-    s3client = S3Client(model.get_access_key(), model.get_secret(), model.get_region_name())
+    s3client = S3Client(get_source_value(payload, ACCESS_KEY),
+                        get_source_value(payload, SECRET_KEY),
+                        get_source_value(payload, REGION_NAME))
 
-    if not s3client.does_bucket_exist(model.get_bucket()):
+    if not s3client.does_bucket_exist(get_source_value(payload, BUCKET)):
         return -1
 
-    files = s3client.list_files(model.get_bucket())
+    files = s3client.list_files(get_source_value(payload, BUCKET))
 
-    version = model.get_version()
+    version = get_version(payload, VERSION_KEY_NAME)
+
     if version is None or version is "":
         versions = []
     else:
-        regexp = '{}(.*).tar.gz'.format(model.get_filename())
-        versions = matcher.match_versions(regexp, files, model.get_version())
+        regexp = '{}(.*).tar.gz'.format(get_source_value(payload, FILE_NAME))
+        versions = match_versions(regexp, files, get_version(payload, VERSION_KEY_NAME))
 
-    print(json_output.check_output(versions))
+    print(versions_as_list(versions, VERSION_KEY_NAME))
 
     return 0
 
